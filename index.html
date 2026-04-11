@@ -1,189 +1,417 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="Css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Esteveny Sofécia | Web Developer & UI/UX Designer</title>
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/Css/style.css">
+    <style>
+        .profile-img-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff4d05, #ff8a3d);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            font-weight: 700;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+        }
+        .about-img-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            font-weight: 700;
+            color: #ff4d05;
+            font-family: 'Poppins', sans-serif;
+        }
+        .portfolio-img-placeholder {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 50px;
+            font-weight: 700;
+            color: #ff4d05;
+            transition: transform 0.5s;
+        }
+        .portfolio-img-placeholder span {
+            font-size: 14px;
+            color: #aaa;
+        }
+        .project-tech {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+        .tech-badge {
+            background: rgba(255, 77, 5, 0.2);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            color: #ff4d05;
+        }
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+            color: #ff4d05;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .project-link:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-        <header>
-            <a href="#" class="logo">Este<span>veny.</span></a>
-    
-            <ul class="navlist">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#photos">Photos</a></li>
-                <li><a href="#contact">Contact Me</a></li>
-            </ul>
-    
-            <div class="bx bx-menu" id="menu-icon"></div>
-        </header>
-    
-        <section class="home" id="home">
-           <div class="home-text">
-            <div class="slide">
-                <span class="one">Hello</span>
-                <span class="two">I'm</span>
-            </div>
-            <h1>Mustakim</h1>
-            <h3>ESTEVENY<span> SOFÉCIA.</span></h3>
-            <p>Web Developer with 5+ years experience that keep customers <br> 
-            coming back for about services makes best effort.</p>
-            <div class="button">
-                <a href="#" class="btn">Say hello</a>
-                <a href="#" class="btn2"><span><i class='bx bx-play'></i></span>Watch My Work</a>
-            </div>
-           </div> 
-        </section>
-    
-    <section class="about" id="about">
-        <div class="about-img">
-            <img src="img/IMG-20231221-WA0021.jpg" alt="">
-        </div>
+    <!-- Preloader -->
+    <div class="preloader">
+        <div class="loader"></div>
+    </div>
 
-      <div class="about-text">
-        <h2>About <span>Me</span></h2>
-        <h4>Creative UI/UX Designer!</h4>
-        <p>Check out 10 Best Design's updates for the top web design &
-            development companies for your needs by reviewing our list & development
-            companies! Find the best web design. Web design Consulting.
-            companies Find the best web design. Web design Consulting
-            companies Find the best web design. Web design Consulting
-            development companies for your needs by reviewing our list
-            development companies for your needs by reviewing our list & development
-        </p>
-        <a href="#" class="btn">More About</a>
-      </div>  
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Este<span>veny</span></a>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">Sobre</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#services" class="nav-link">Serviços</a></li>
+                <li><a href="#portfolio" class="nav-link">Portfólio</a></li>
+                <li><a href="#contact" class="nav-link">Contacto</a></li>
+            </ul>
+            <div class="menu-icon" id="menu-icon"><i class='bx bx-menu'></i></div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">👋 Bem-vindo ao meu mundo</div>
+            <h1>Olá, eu sou <span class="highlight" id="typed"></span></h1>
+            <p class="subtitle">Web Developer & UI/UX Designer</p>
+            <p class="description">Crio experiências digitais elegantes, rápidas e impactantes que fazem a diferença para o seu negócio.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn primary"><i class='bx bx-chat'></i> Falar comigo</a>
+                <a href="#portfolio" class="btn secondary"><i class='bx bx-folder'></i> Ver projetos</a>
+            </div>
+            <div class="social-links">
+                <a href="https://github.com/EstevenySofecia" target="_blank"><i class='bx bxl-github'></i></a>
+                <a href="https://www.linkedin.com/in/esteveny-dacosta-0521702a6/" target="_blank"><i class='bx bxl-linkedin'></i></a>
+                <a href="https://www.instagram.com/iam_esteveny/" target="_blank"><i class='bx bxl-instagram'></i></a>
+                <a href="https://wa.me/244974863712" target="_blank"><i class='bx bxl-whatsapp'></i></a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="image-wrapper">
+                <div class="profile-img-placeholder">ES</div>
+                <div class="image-ring"></div>
+            </div>
+        </div>
     </section>
 
-         <!----service section design-->
-         <section class="services" id="services">
-            <div class="main-text">
-                <p>What I am Expert In</p>
-                <h2><span>My</span>Services</h2>
-            </div>
-    
-            <div class="services-content">
-                <div class="box">
-                    <div class="s-icons">
-                        <i class='bx bx-mobile-alt'></i>
-                    </div>
-                    <h3>Web Design</h3>
-                    <p>One way to categorize the activities is in terms of the
-                        professional's area of expertise such as competitive analysis,
-                        corporate strategy
-                    </p>
-                    <a href="#" class="read">Read More</a>
-                </div>
-                
-                <div class="box">
-                    <div class="s-icons">
-                        <i class='bx bx-code-alt'></i>
-                    </div>
-                    <h3>Web Design</h3>
-                    <p>One way to categorize the activities is in terms of the
-                        professional's area of expertise such as competitive analysis,
-                        corporate strategy
-                    </p>
-                    <a href="#" class="read">Read More</a>
-                </div>
-    
-                <div class="box">
-                    <div class="s-icons">
-                        <i class='bx bx-mobile-alt'></i>
-                    </div>
-                    <h3>Web Design</h3>
-                    <p>One way to categorize the activities is in terms of the
-                        professional's area of expertise such as competitive analysis,
-                        corporate strategy
-                    </p>
-                    <a href="#" class="read">Read More</a>
-                </div>
-            </div>
-         </section>
-
-              <!----portfolio section design-->
-     <section class="photos" id="photos">
-        <div class="main-text">
-            <p>Portfolio</p>
-            <h2><span>Latest</span> Project</h2>
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="section-header">
+            <span class="section-tag">Sobre Mim</span>
+            <h2>Conheça <span>um pouco</span> da minha trajetória</h2>
+            <div class="section-line"></div>
         </div>
-
-        <div class="portfolio-content">
-            <div class="row">
-                <img src="img 1/IMG-20231221-WA0015.jpg" alt="">
-                <div class="layer">
-                    <h5>Visual Design</h5>
-                    <p>Check out 10 Best design's updates for the top web design &
-                        development companies.
-                    </p>
-                    <a href="#"><i class='bx bx-link-external' ></i></a>
+        <div class="about-grid">
+            <div class="about-image">
+                <div class="about-img-wrapper">
+                    <div class="about-img-placeholder">ES</div>
+                </div>
+                <div class="experience-badge">
+                    <span>5+</span>
+                    <p>Anos de<br>Experiência</p>
                 </div>
             </div>
-
-            <div class="row">
-                <img src="img 1/IMG-20231221-WA0015.jpg" alt="">
-                <div class="layer">
-                    <h5>Visual Design</h5>
-                    <p>Check out 10 Best design's updates for the top web design &
-                        development companies.
-                    </p>
-                    <a href="#"><i class='bx bx-link-external' ></i></a>
+            <div class="about-text">
+                <h3>Transformando ideias em realidade digital</h3>
+                <p>Sou Esteveny Sofécia, um desenvolvedor web apaixonado por transformar ideias em realidade digital. Com mais de 5 anos de experiência, especializo-me em criar sites modernos, responsivos e otimizados para os motores de busca.</p>
+                <p>Meu objetivo é entregar soluções bonitas e funcionais que ajudam os meus clientes a crescer online e alcançar seus objetivos de negócio.</p>
+                <div class="about-info">
+                    <div class="info-item">
+                        <i class='bx bx-user'></i>
+                        <div>
+                            <strong>Nome:</strong>
+                            <span>Esteveny Sofécia</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class='bx bx-map'></i>
+                        <div>
+                            <strong>Localização:</strong>
+                            <span>Luanda, Angola</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class='bx bx-envelope'></i>
+                        <div>
+                            <strong>Email:</strong>
+                            <span>estevenydacosta@gmail.com</span>
+                        </div>
+                    </div>
+                    <div class="info-item">
+                        <i class='bx bx-phone'></i>
+                        <div>
+                            <strong>Telefone:</strong>
+                            <span>+244 974 863 712</span>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <img src="img 1/IMG-20231221-WA0015.jpg" alt="">
-                <div class="layer">
-                    <h5>Visual Design</h5>
-                    <p>Check out 10 Best design's updates for the top web design &
-                        development companies.
-                    </p>
-                    <a href="#"><i class='bx bx-link-external' ></i></a>
-                </div>
-            </div>
-
-            <div class="row">
-                <img src="img 1/IMG-20231221-WA0023.jpg" alt="">
-                <div class="layer">
-                    <h5>Visual Design</h5>
-                    <p>Check out 10 Best design's updates for the top web design &
-                        development companies.
-                    </p>
-                    <a href="#"><i class='bx bx-link-external' ></i></a>
-                </div>
-            </div>
-
-            <div class="row">
-                <img src="img 1/IMG-20231221-WA0023.jpg" alt="">
-                <div class="layer">
-                    <h5>Visual Design</h5>
-                    <p>Check out 10 Best design's updates for the top web design &
-                        development companies.
-                    </p>
-                    <a href="#"><i class='bx bx-link-external' ></i></a>
-                </div>
-            </div>
-
-            <div class="row">
-                <img src="img 1/IMG-20231221-WA0023.jpg" alt="">
-                <div class="layer">
-                    <h5>Visual Design</h5>
-                    <p>Check out 10 Best design's updates for the top web design &
-                        development companies.
-                    </p>
-                    <a href="#"><i class='bx bx-link-external' ></i></a>
-                </div>
+                <a href="#contact" class="btn primary"><i class='bx bx-download'></i> Download CV</a>
             </div>
         </div>
-     </section>
+    </section>
 
+    <!-- Skills Section -->
+    <section id="skills" class="section bg-dark">
+        <div class="section-header">
+            <span class="section-tag">Minhas Habilidades</span>
+            <h2>Tecnologias que <span>domino</span></h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="skills-wrapper">
+            <div class="skills-container">
+                <div class="skill">
+                    <div class="skill-info">
+                        <span><i class='bx bxl-html5'></i> HTML &amp; CSS</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="skill-bar"><div class="progress" data-width="95"></div></div>
+                </div>
+                <div class="skill">
+                    <div class="skill-info">
+                        <span><i class='bx bxl-javascript'></i> JavaScript</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="skill-bar"><div class="progress" data-width="90"></div></div>
+                </div>
+                <div class="skill">
+                    <div class="skill-info">
+                        <span><i class='bx bxl-figma'></i> UI/UX Design</span>
+                        <span>88%</span>
+                    </div>
+                    <div class="skill-bar"><div class="progress" data-width="88"></div></div>
+                </div>
+                <div class="skill">
+                    <div class="skill-info">
+                        <span><i class='bx bxl-react'></i> React / Next.js</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="skill-bar"><div class="progress" data-width="85"></div></div>
+                </div>
+                <div class="skill">
+                    <div class="skill-info">
+                        <span><i class='bx bxl-php'></i> PHP / Laravel</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="skill-bar"><div class="progress" data-width="80"></div></div>
+                </div>
+                <div class="skill">
+                    <div class="skill-info">
+                        <span><i class='bx bxl-python'></i> Python</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="skill-bar"><div class="progress" data-width="75"></div></div>
+                </div>
+            </div>
+            <div class="skills-extra">
+                <div class="extra-card">
+                    <i class='bx bx-trophy'></i>
+                    <h4>50+</h4>
+                    <p>Projetos Concluídos</p>
+                </div>
+                <div class="extra-card">
+                    <i class='bx bx-smile'></i>
+                    <h4>30+</h4>
+                    <p>Clientes Satisfeitos</p>
+                </div>
+                <div class="extra-card">
+                    <i class='bx bx-code-alt'></i>
+                    <h4>100+</h4>
+                    <p>Commits no GitHub</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <div class="section-header">
+            <span class="section-tag">O que eu faço</span>
+            <h2>Meus <span>Serviços</span></h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon"><i class='bx bx-code-alt'></i></div>
+                <h3>Web Development</h3>
+                <p>Sites rápidos, modernos e totalmente responsivos para todos os dispositivos.</p>
+                <a href="#contact" class="service-link">Solicitar <i class='bx bx-right-arrow-alt'></i></a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class='bx bx-paint'></i></div>
+                <h3>UI/UX Design</h3>
+                <p>Interfaces bonitas, intuitivas e centradas nas necessidades do utilizador.</p>
+                <a href="#contact" class="service-link">Solicitar <i class='bx bx-right-arrow-alt'></i></a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class='bx bx-mobile-alt'></i></div>
+                <h3>Design Responsivo</h3>
+                <p>Experiência perfeita em desktop, tablet e dispositivos móveis.</p>
+                <a href="#contact" class="service-link">Solicitar <i class='bx bx-right-arrow-alt'></i></a>
+            </div>
+            <div class="service-card">
+                <div class="service-icon"><i class='bx bx-search-alt'></i></div>
+                <h3>SEO Optimization</h3>
+                <p>Otimização para motores de busca e melhor posicionamento no Google.</p>
+                <a href="#contact" class="service-link">Solicitar <i class='bx bx-right-arrow-alt'></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="section bg-dark">
+        <div class="section-header">
+            <span class="section-tag">Meus Trabalhos</span>
+            <h2>Projetos <span>Recentes</span></h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="portfolio-filters">
+            <button class="filter-btn active" data-filter="all">Todos</button>
+            <button class="filter-btn" data-filter="web">Web Development</button>
+            <button class="filter-btn" data-filter="design">UI/UX Design</button>
+            <button class="filter-btn" data-filter="featured">Destaques</button>
+        </div>
+        <div class="portfolio-grid" id="portfolio-grid"></div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="section-header">
+            <span class="section-tag">Vamos trabalhar juntos</span>
+            <h2>Entre em <span>Contacto</span></h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="contact-wrapper">
+            <div class="contact-info">
+                <div class="contact-card">
+                    <i class='bx bx-phone-call'></i>
+                    <div>
+                        <h4>Telefone</h4>
+                        <p>+244 974 863 712</p>
+                        <a href="https://wa.me/244974863712" class="small-link" style="color:#ff4d05; font-size:12px;">WhatsApp <i class='bx bxl-whatsapp'></i></a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <i class='bx bx-envelope'></i>
+                    <div>
+                        <h4>Email</h4>
+                        <p>estevenydacosta@gmail.com</p>
+                        <a href="mailto:estevenydacosta@gmail.com" class="small-link" style="color:#ff4d05; font-size:12px;">Enviar email <i class='bx bx-right-arrow-alt'></i></a>
+                    </div>
+                </div>
+                <div class="contact-card">
+                    <i class='bx bx-map'></i>
+                    <div>
+                        <h4>Localização</h4>
+                        <p>Luanda, Angola</p>
+                    </div>
+                </div>
+            </div>
+            <form id="contact-form" class="contact-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Seu nome" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" placeholder="Seu email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Assunto" required>
+                </div>
+                <div class="form-group">
+                    <textarea placeholder="Sua mensagem" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn primary"><i class='bx bx-send'></i> Enviar Mensagem</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <a href="#" class="logo">Este<span>veny</span></a>
+                <p>Criando experiências digitais que transformam ideias em realidade.</p>
+                <div class="footer-social">
+                    <a href="https://github.com/EstevenySofecia" target="_blank"><i class='bx bxl-github'></i></a>
+                    <a href="https://www.linkedin.com/in/esteveny-dacosta-0521702a6/" target="_blank"><i class='bx bxl-linkedin'></i></a>
+                    <a href="https://www.instagram.com/iam_esteveny/" target="_blank"><i class='bx bxl-instagram'></i></a>
+                    <a href="https://wa.me/244974863712" target="_blank"><i class='bx bxl-whatsapp'></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#services">Serviços</a></li>
+                    <li><a href="#portfolio">Portfólio</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h4>Newsletter</h4>
+                <p>Receba novidades e projetos exclusivos.</p>
+                <form id="newsletter-form">
+                    <input type="email" placeholder="Seu email">
+                    <button type="submit"><i class='bx bx-send'></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Esteveny Sofécia. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <div class="back-to-top" id="backToTop">
+        <i class='bx bx-up-arrow-alt'></i>
+    </div>
+
+    <!-- Modal -->
+    <div id="portfolio-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modal-img" class="modal-img-placeholder"></div>
+            <h3 id="modal-title"></h3>
+            <p id="modal-desc"></p>
+            <div id="modal-tech" style="padding: 0 20px 20px;"></div>
+            <div id="modal-links" style="padding: 0 20px 20px;"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
