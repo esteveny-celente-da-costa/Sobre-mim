@@ -7,83 +7,8 @@
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/Css/style.css">
-    <style>
-        .profile-img-placeholder {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #ff4d05, #ff8a3d);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 80px;
-            font-weight: 700;
-            color: white;
-            font-family: 'Poppins', sans-serif;
-        }
-        .about-img-placeholder {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 60px;
-            font-weight: 700;
-            color: #ff4d05;
-            font-family: 'Poppins', sans-serif;
-        }
-        .portfolio-img-placeholder {
-            width: 100%;
-            height: 250px;
-            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-size: 50px;
-            font-weight: 700;
-            color: #ff4d05;
-            transition: transform 0.5s;
-        }
-        .portfolio-img-placeholder span {
-            font-size: 14px;
-            color: #aaa;
-        }
-        .project-tech {
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-            margin-top: 10px;
-        }
-        .tech-badge {
-            background: rgba(255, 77, 5, 0.2);
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 10px;
-            color: #ff4d05;
-        }
-        .project-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            margin-top: 10px;
-            color: #ff4d05;
-            text-decoration: none;
-            font-size: 13px;
-        }
-        .project-link:hover {
-            text-decoration: underline;
-        }
-    </style>
 </head>
 <body>
-    <!-- Preloader -->
-    <div class="preloader">
-        <div class="loader"></div>
-    </div>
 
     <!-- Navbar -->
     <nav class="navbar">
@@ -178,7 +103,7 @@
                         </div>
                     </div>
                 </div>
-                <a href="#contact" class="btn primary"><i class='bx bx-download'></i> Download CV</a>
+                <a href="#" class="btn primary" id="downloadCV"><i class='bx bx-download'></i> Download CV</a>
             </div>
         </div>
     </section>
@@ -313,14 +238,43 @@
             <h2>Entre em <span>Contacto</span></h2>
             <div class="section-line"></div>
         </div>
+        
+        <!-- Opções de contacto rápidas -->
+        <div class="contact-options">
+            <div class="contact-option-card" onclick="sendWhatsAppMessage()">
+                <i class='bx bxl-whatsapp'></i>
+                <div>
+                    <h4>WhatsApp Rápido</h4>
+                    <p>Clique para enviar mensagem direta</p>
+                </div>
+            </div>
+            <div class="contact-option-card" onclick="sendSMS()">
+                <i class='bx bx-message-rounded-dots'></i>
+                <div>
+                    <h4>SMS</h4>
+                    <p>Enviar mensagem de texto</p>
+                </div>
+            </div>
+            <div class="contact-option-card" onclick="callPhone()">
+                <i class='bx bx-phone-call'></i>
+                <div>
+                    <h4>Ligar Agora</h4>
+                    <p>Falar diretamente</p>
+                </div>
+            </div>
+        </div>
+
         <div class="contact-wrapper">
             <div class="contact-info">
                 <div class="contact-card">
                     <i class='bx bx-phone-call'></i>
                     <div>
-                        <h4>Telefone</h4>
+                        <h4>Telefone & WhatsApp</h4>
                         <p>+244 974 863 712</p>
-                        <a href="https://wa.me/244974863712" class="small-link" style="color:#ff4d05; font-size:12px;">WhatsApp <i class='bx bxl-whatsapp'></i></a>
+                        <div class="contact-buttons">
+                            <a href="https://wa.me/244974863712" class="small-link" target="_blank"><i class='bx bxl-whatsapp'></i> WhatsApp</a>
+                            <a href="tel:+244974863712" class="small-link"><i class='bx bx-phone'></i> Ligar</a>
+                        </div>
                     </div>
                 </div>
                 <div class="contact-card">
@@ -328,7 +282,7 @@
                     <div>
                         <h4>Email</h4>
                         <p>estevenydacosta@gmail.com</p>
-                        <a href="mailto:estevenydacosta@gmail.com" class="small-link" style="color:#ff4d05; font-size:12px;">Enviar email <i class='bx bx-right-arrow-alt'></i></a>
+                        <a href="mailto:estevenydacosta@gmail.com" class="small-link">Enviar email <i class='bx bx-right-arrow-alt'></i></a>
                     </div>
                 </div>
                 <div class="contact-card">
@@ -339,20 +293,34 @@
                     </div>
                 </div>
             </div>
-            <form id="contact-form" class="contact-form">
+            
+            <!-- Formulário de contacto com envio real de email -->
+            <form id="contact-form" class="contact-form" action="https://formsubmit.co/estevenydacosta@gmail.com" method="POST">
+                <!-- Configurações do FormSubmit -->
+                <input type="hidden" name="_subject" value="Novo contacto do Portfólio - Esteveny">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_next" value="https://estevenysopecia.github.io/portfolio/obrigado.html">
+                <!-- Redirecionamento temporário (fallback) -->
+                <input type="hidden" name="_next" value="#">
+                
                 <div class="form-group">
-                    <input type="text" placeholder="Seu nome" required>
+                    <input type="text" name="nome" placeholder="Seu nome" required>
                 </div>
                 <div class="form-group">
-                    <input type="email" placeholder="Seu email" required>
+                    <input type="email" name="email" placeholder="Seu email" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" placeholder="Assunto" required>
+                    <input type="tel" name="telefone" placeholder="Seu telefone (opcional)">
                 </div>
                 <div class="form-group">
-                    <textarea placeholder="Sua mensagem" rows="5" required></textarea>
+                    <input type="text" name="assunto" placeholder="Assunto" required>
+                </div>
+                <div class="form-group">
+                    <textarea name="mensagem" placeholder="Sua mensagem" rows="5" required></textarea>
                 </div>
                 <button type="submit" class="btn primary"><i class='bx bx-send'></i> Enviar Mensagem</button>
+                <p class="form-note">📧 Sua mensagem será enviada por email. Responderei em até 24h.</p>
             </form>
         </div>
     </section>
@@ -384,8 +352,9 @@
             <div class="footer-newsletter">
                 <h4>Newsletter</h4>
                 <p>Receba novidades e projetos exclusivos.</p>
-                <form id="newsletter-form">
-                    <input type="email" placeholder="Seu email">
+                <form id="newsletter-form" action="https://formsubmit.co/estevenydacosta@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="Novo inscrito na Newsletter">
+                    <input type="email" name="email" placeholder="Seu email" required>
                     <button type="submit"><i class='bx bx-send'></i></button>
                 </form>
             </div>
@@ -407,10 +376,13 @@
             <div id="modal-img" class="modal-img-placeholder"></div>
             <h3 id="modal-title"></h3>
             <p id="modal-desc"></p>
-            <div id="modal-tech" style="padding: 0 20px 20px;"></div>
-            <div id="modal-links" style="padding: 0 20px 20px;"></div>
+            <div id="modal-tech"></div>
+            <div id="modal-links"></div>
         </div>
     </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
 
     <script src="script.js"></script>
 </body>

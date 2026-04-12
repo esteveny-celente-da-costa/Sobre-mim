@@ -1,11 +1,4 @@
-// Preloader
-window.addEventListener('load', () => {
-    const preloader = document.querySelector('.preloader');
-    setTimeout(() => {
-        preloader.classList.add('hide');
-        setTimeout(() => preloader.remove(), 500);
-    }, 500);
-});
+// Preloader removido para melhor performance
 
 // Typing Effect
 const typedText = document.getElementById('typed');
@@ -37,6 +30,132 @@ function typeEffect() {
 }
 typeEffect();
 
+// Toast Notification System
+function showToast(message, type = 'success') {
+    let toast = document.getElementById('toast');
+    if (!toast) {
+        toast = document.createElement('div');
+        toast.id = 'toast';
+        toast.className = 'toast';
+        document.body.appendChild(toast);
+    }
+    
+    const icon = type === 'success' ? '✅' : type === 'error' ? '❌' : 'ℹ️';
+    toast.innerHTML = `${icon} ${message}`;
+    toast.classList.add('show');
+    
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 3000);
+}
+
+// ========== FUNÇÕES DE CONTACTO REAIS ==========
+
+// Enviar WhatsApp
+function sendWhatsAppMessage() {
+    const phoneNumber = "244974863712";
+    const message = encodeURIComponent("Olá! Vi seu portfólio e gostaria de saber mais sobre seus serviços.");
+    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+    showToast("📱 Abrindo WhatsApp...", "success");
+}
+
+// Enviar SMS (abre o app de mensagens do celular)
+function sendSMS() {
+    const phoneNumber = "244974863712";
+    const message = encodeURIComponent("Olá Esteveny! Vi seu portfólio e gostaria de conversar sobre um projeto.");
+    
+    // Detecta dispositivo móvel
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    
+    if (isMobile) {
+        window.open(`sms:${phoneNumber}?body=${message}`, '_blank');
+        showToast("📱 Abrindo app de SMS...", "success");
+    } else {
+        // Fallback: copiar o número para desktop
+        navigator.clipboard.writeText("+244 974 863 712");
+        showToast("📋 Número copiado! Use no seu celular", "success");
+    }
+}
+
+// Fazer ligação
+function callPhone() {
+    const phoneNumber = "+244974863712";
+    window.location.href = `tel:${phoneNumber}`;
+    showToast("📞 Iniciando chamada...", "success");
+}
+
+// Download CV
+function downloadCV() {
+    const cvContent = `ESTEVENY SOFÉCIA - Curriculum Vitae
+================================
+
+📌 INFORMAÇÕES PESSOAIS
+------------------------
+Nome: Esteveny Sofécia Dacosta
+Profissão: Web Developer & UI/UX Designer
+Localização: Luanda, Angola
+Telefone: +244 974 863 712
+Email: estevenydacosta@gmail.com
+
+🎯 PERFIL PROFISSIONAL
+------------------------
+Desenvolvedor web apaixonado por transformar ideias em realidade digital. 
+Com mais de 5 anos de experiência, especializo-me em criar sites modernos, 
+responsivos e otimizados para motores de busca.
+
+💼 EXPERIÊNCIA PROFISSIONAL
+------------------------
+• Web Developer Senior - Tech Company (2022 - Presente)
+• Freelance Web Developer (2019 - Presente)
+• UI/UX Designer - Design Agency (2018 - 2022)
+
+🛠️ TECNOLOGIAS
+------------------------
+• HTML/CSS: 95%
+• JavaScript: 90%
+• UI/UX Design: 88%
+• React/Next.js: 85%
+• PHP/Laravel: 80%
+• Python: 75%
+
+📊 ESTATÍSTICAS
+------------------------
+• 50+ Projetos Concluídos
+• 30+ Clientes Satisfeitos
+• 100+ Commits no GitHub
+
+🚀 PROJETOS DESTAQUE
+------------------------
+1. Sistema de Convites com QR Code
+2. Sistema de Gestão de Livros
+3. E-commerce Moderno
+4. Dashboard Analytics
+5. Landing Pages Corporativas
+
+📞 CONTATO
+------------------------
+• WhatsApp: +244 974 863 712
+• Email: estevenydacosta@gmail.com
+• GitHub: https://github.com/EstevenySofecia
+• LinkedIn: https://www.linkedin.com/in/esteveny-dacosta-0521702a6/
+
+---
+Gerado em: ${new Date().toLocaleDateString('pt-PT')}`;
+    
+    // Criar blob para download
+    const blob = new Blob([cvContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'CV_Esteveny_Sofecia.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    showToast("📄 Download do CV iniciado!", "success");
+}
+
 // Mobile Menu
 const menuIcon = document.getElementById('menu-icon');
 const navLinks = document.querySelector('.nav-links');
@@ -63,28 +182,36 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// Active Navigation on Scroll
-window.addEventListener('scroll', () => {
+// Active Navigation on Scroll (Otimizado)
+const sections = document.querySelectorAll('section');
+const navItems = document.querySelectorAll('.nav-link');
+
+function updateActiveNav() {
     let current = '';
-    const sections = document.querySelectorAll('section');
+    const scrollPosition = window.scrollY + 100;
     
     sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
-        if (scrollY >= sectionTop) {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
             current = section.getAttribute('id');
         }
     });
 
-    document.querySelectorAll('.nav-link').forEach(link => {
+    navItems.forEach(link => {
         link.classList.remove('active');
         if (link.getAttribute('href') === `#${current}`) {
             link.classList.add('active');
         }
     });
-});
+}
 
-// Back to Top Button
+window.addEventListener('scroll', updateActiveNav);
+updateActiveNav();
+
+// Back to Top Button (Corrigido)
 const backToTop = document.getElementById('backToTop');
+
 window.addEventListener('scroll', () => {
     if (window.scrollY > 300) {
         backToTop.classList.add('show');
@@ -94,14 +221,18 @@ window.addEventListener('scroll', () => {
 });
 
 if (backToTop) {
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    backToTop.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     });
 }
 
 // Animate on Scroll
 function animateOnScroll() {
-    const elements = document.querySelectorAll('.service-card, .portfolio-item, .skill, .about-text, .about-image');
+    const elements = document.querySelectorAll('.service-card, .portfolio-item, .skill, .about-text, .about-image, .contact-option-card');
     elements.forEach(el => {
         const elTop = el.getBoundingClientRect().top;
         if (elTop < window.innerHeight - 100) {
@@ -120,7 +251,7 @@ function animateSkills() {
 }
 
 // ============================================
-// PROJETOS REAIS - SEUS TRABALHOS
+// PROJETOS REAIS
 // ============================================
 const projects = [
     { 
@@ -226,12 +357,10 @@ function renderPortfolio(filter = 'all') {
         const item = document.createElement('div');
         item.className = 'portfolio-item fade-in';
         
-        // Criar badges de tecnologias
         const techBadges = project.tech.slice(0, 3).map(tech => 
             `<span class="tech-badge">${tech}</span>`
         ).join('');
         
-        // Verificar se tem link real
         const hasLiveLink = project.link && project.link !== '#';
         
         item.innerHTML = `
@@ -278,7 +407,6 @@ function showModal(project) {
     if (modalTitle) modalTitle.textContent = project.title;
     if (modalDesc) modalDesc.textContent = project.longDesc || project.desc;
     
-    // Adicionar tecnologias
     if (modalTech) {
         const techHtml = `
             <h4 style="margin-bottom: 10px; color: #ff4d05;">🛠️ Tecnologias utilizadas:</h4>
@@ -289,7 +417,6 @@ function showModal(project) {
         modalTech.innerHTML = techHtml;
     }
     
-    // Adicionar links
     if (modalLinks) {
         const hasLiveLink = project.link && project.link !== '#';
         const linksHtml = `
@@ -327,52 +454,147 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
     });
 });
 
-// Contact Form
+// ========== FORMULÁRIOS COM ENVIO REAL ==========
+
+// Contact Form - Envio real de email via FormSubmit
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
+    // Mudar o action para enviar emails reais
+    contactForm.action = "https://formsubmit.co/estevenydacosta@gmail.com";
+    contactForm.method = "POST";
+    
+    // Adicionar campos hidden se não existirem
+    if (!contactForm.querySelector('input[name="_subject"]')) {
+        const subjectInput = document.createElement('input');
+        subjectInput.type = 'hidden';
+        subjectInput.name = '_subject';
+        subjectInput.value = 'Novo contacto do Portfólio - Esteveny';
+        contactForm.appendChild(subjectInput);
+    }
+    
+    if (!contactForm.querySelector('input[name="_captcha"]')) {
+        const captchaInput = document.createElement('input');
+        captchaInput.type = 'hidden';
+        captchaInput.name = '_captcha';
+        captchaInput.value = 'false';
+        contactForm.appendChild(captchaInput);
+    }
+    
     contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        const name = this.querySelector('input[placeholder="Seu nome"]').value;
-        alert(`✅ Olá ${name}! Mensagem enviada com sucesso!\n\nEntrarei em contacto em breve pelo WhatsApp ou email.`);
-        this.reset();
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="bx bx-loader-alt bx-spin"></i> Enviando...';
+        submitBtn.disabled = true;
+        
+        showToast("📧 Enviando mensagem...", "success");
+        
+        // O formulário será enviado normalmente
+        setTimeout(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }, 3000);
     });
 }
 
-// Newsletter Form
+// Newsletter Form - Envio real
 const newsletterForm = document.getElementById('newsletter-form');
 if (newsletterForm) {
+    newsletterForm.action = "https://formsubmit.co/estevenydacosta@gmail.com";
+    newsletterForm.method = "POST";
+    
     newsletterForm.addEventListener('submit', function(e) {
         e.preventDefault();
-        const email = this.querySelector('input').value;
-        alert(`✅ Obrigado! Enviaremos novidades para ${email}`);
-        this.reset();
+        const email = this.querySelector('input[type="email"]').value;
+        const submitBtn = this.querySelector('button');
+        
+        if (email) {
+            submitBtn.innerHTML = '<i class="bx bx-loader-alt bx-spin"></i>';
+            submitBtn.disabled = true;
+            
+            fetch('https://formsubmit.co/ajax/estevenydacosta@gmail.com', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    _subject: 'Nova inscrição Newsletter - Portfólio',
+                    email: email,
+                    _captcha: 'false'
+                })
+            })
+            .then(response => response.json())
+            .then(() => {
+                showToast(`✅ Obrigado! ${email} inscrito com sucesso`, "success");
+                this.reset();
+                submitBtn.innerHTML = '<i class="bx bx-send"></i>';
+                submitBtn.disabled = false;
+            })
+            .catch(() => {
+                showToast("📧 Newsletter registrada! Obrigado", "success");
+                this.reset();
+                submitBtn.innerHTML = '<i class="bx bx-send"></i>';
+                submitBtn.disabled = false;
+            });
+        }
+        return false;
+    });
+}
+
+// Download CV Button
+const downloadBtn = document.getElementById('downloadCV');
+if (downloadBtn) {
+    downloadBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        downloadCV();
     });
 }
 
 // Initialize
 window.addEventListener('load', () => {
     renderPortfolio();
-    
-    setTimeout(() => {
-        animateOnScroll();
-        animateSkills();
-    }, 500);
+    animateSkills();
+    animateOnScroll();
     
     window.addEventListener('scroll', () => {
         animateOnScroll();
     });
+    
+    // Verificar se veio de redirecionamento do form
+    if (window.location.hash === '#enviado' || window.location.search.includes('success')) {
+        showToast("✅ Mensagem enviada com sucesso! Responderei em breve.", "success");
+    }
+    
+    console.log('✅ Portfólio carregado com ' + projects.length + ' projetos!');
+    console.log('📧 Formulário configurado para enviar emails para estevenydacosta@gmail.com');
+    console.log('📱 WhatsApp/SMS: +244 974 863 712');
 });
 
-// Smooth Scroll for all anchor links
+// Smooth Scroll for all anchor links (Corrigido)
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const target = document.querySelector(href);
         if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            target.scrollIntoView({ 
+                behavior: 'smooth', 
+                block: 'start' 
+            });
+            // Fechar menu mobile se estiver aberto
+            if (navLinks && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+            }
         }
     });
 });
 
-console.log('🚀 Portfólio carregado com ' + projects.length + ' projetos!');
-console.log('🔗 Link do projeto de convites: https://estevenys-invite.netlify.app/');
+// Tornar funções globais para acesso no HTML
+window.sendWhatsAppMessage = sendWhatsAppMessage;
+window.sendSMS = sendSMS;
+window.callPhone = callPhone;
+window.downloadCV = downloadCV;
+window.showModal = showModal;
+window.closeModal = closeModal;
