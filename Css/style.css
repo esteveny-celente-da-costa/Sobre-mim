@@ -221,6 +221,12 @@ body {
     width: 350px;
     height: 350px;
 }
+.profile-img-placeholder img.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
 
 .profile-img-placeholder {
     width: 100%;
